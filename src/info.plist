@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.brianbillman.alfred-2-toggle-mute-workflow</string>
+	<key>connections</key>
+	<dict>
+		<key>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>C123BF09-B70E-48F6-B520-DFA0DF1E87BE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8F64217A-43D1-4BD4-8C13-5C0AE0284080</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Brian Billman</string>
+	<key>description</key>
+	<string>Mute audio (optionally for X seconds); or umute if already muted</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Toggle Mute</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>is_muted=$(osascript -e 'output muted of (get volume settings)')
+
+if [ "$is_muted" = "true" ]
+then
+	# already muted, unmute
+	# ignores any arguments
+	osascript -e 'set volume without output muted'
+else
+	# not muted, mute, for specified time (if number passed)
+	osascript -e 'set volume with output muted'
+	if [ {query} -gt 0 ] 
+	then
+		sleep {query}
+		osascript -e 'set volume without output muted'
+	fi
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>16039760-F173-4AB8-9C73-DA7401D5DE23</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>mute</string>
+				<key>subtext</key>
+				<string>Add a numeric argument to mute for that many seconds</string>
+				<key>text</key>
+				<string>Mute / Unmute</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>keyword</key>
+				<string>unmute</string>
+				<key>text</key>
+				<string>Unmute</string>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>C123BF09-B70E-48F6-B520-DFA0DF1E87BE</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>is_muted=$(osascript -e 'output muted of (get volume settings)')
+
+if [ "$is_muted" = "true" ]
+then
+	# already muted, unmute
+	# ignores any arguments
+	osascript -e 'set volume without output muted'
+fi</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8F64217A-43D1-4BD4-8C13-5C0AE0284080</string>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>Usage:
+ * mute : mute audio (if not already muted)
+ * mute : unmute audio (if already muted)
+ * mute X : mute audio for X seconds (must be a number)
+ * unmute : unmute audio, if muted
+
+Icon source: 
+ * http://commons.wikimedia.org/wiki/File:Mute_Icon.svg
+ * http://commons.wikimedia.org/wiki/File:Speaker_Icon.svg</string>
+	<key>uidata</key>
+	<dict>
+		<key>16039760-F173-4AB8-9C73-DA7401D5DE23</key>
+		<dict>
+			<key>ypos</key>
+			<real>50</real>
+		</dict>
+		<key>2C99F6F1-EF16-4CF1-9762-5D05A1FFAA4D</key>
+		<dict>
+			<key>ypos</key>
+			<real>50</real>
+		</dict>
+		<key>8F64217A-43D1-4BD4-8C13-5C0AE0284080</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
+		<key>C123BF09-B70E-48F6-B520-DFA0DF1E87BE</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>https://github.com/brianbillman/alfred-2-toggle-mute-workflow</string>
+</dict>
+</plist>
