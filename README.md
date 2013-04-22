@@ -13,4 +13,11 @@ Tested on OS X 10.8.3.
 * `mute <seconds>` - Toggle the system's mute setting.  The argument is optional, and if provided, the audio will only be muted for that amount of time (in seconds), then unmute itself.  Adding the argument while the sound is already muted (which will result in an unmute) has no effect.  A non-integer argument is ignored.
 * `unmute` - Unmute the system's audio.  No effect if audio is not muted.
 
-    
+### Download
+
+[Download the latest version](https://github.com/brianbillman/alfred-2-toggle-mute-workflow/raw/master/ToggleMute.alfredworkflow) of the workflow.
+
+### Release Notes / Change Log
+
+##### 2013-04-21
+* Initial version
